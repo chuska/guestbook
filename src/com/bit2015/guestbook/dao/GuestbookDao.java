@@ -96,7 +96,7 @@ public class GuestbookDao {
 		}
 	}
 
-	public void delete(String id, String password) {
+	public void delete(GuestbookVo vo) {
 		try {
 			// 1. Connection 가져오기
 			Connection connection = getconnection();
@@ -106,8 +106,8 @@ public class GuestbookDao {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 
 			// 3. binding
-			pstmt.setString(1, id);
-			pstmt.setString(2, password);
+			pstmt.setLong(1, vo.getNo());
+			pstmt.setString(2, vo.getPassword());
 			
 			// 4. query 실행
 			pstmt.executeUpdate();
